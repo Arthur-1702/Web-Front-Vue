@@ -1,16 +1,16 @@
 {
   "cadastros": [
     {
-      "nome": "João",
-      "email": "joao@gmail.com",
-      "numero": "81987878787",
-      "id": 2
-    },
-    {
       "nome": "Maria",
       "email": "maria@gmail.com",
       "numero": "(81)99758-4098",
       "id": 3
+    },
+    {
+      "nome": "Arthur",
+      "email": "arthur@gmail.com",
+      "telefone": "(81) 9 9999-9999",
+      "id": 4
     }
   ]
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3></h3>
-        <input type="text" v-model="cep" placeholder="CEP" />
+        <input style="margin-right: 20px ;" type="text" v-model="cep" placeholder="CEP" />
         <button class="btn" @click="buscarEndereco">Buscar</button>
         <div v-if="endereco">
             <p>{{ endereco.logradouro }}, {{ endereco.bairro }}, {{ endereco.localidade }} - {{ endereco.uf }}</p>
@@ -34,8 +34,8 @@
 
 <style scoped>
 .btn {
-    background-color: #222;
-    color:#fcba03;
+    background-color: #031B4E;
+    color:#fff;
     font-weight: bold;
     padding: 10px;
     font-size: 16px;
@@ -43,6 +43,7 @@
     cursor: pointer;
     transition: .5s;
     margin-right: 10px;
+    border-radius: 15px;
   }
   
   .btn:hover {

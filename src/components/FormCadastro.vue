@@ -1,37 +1,39 @@
 <template>
   <API_Correios/>
-    <div v-if="showingDiv1">
-        <h2>Meu cadastro</h2>
+  <div style="display: flex; justify-content: center;">
+    <div style="border: 1px solid #000; border-radius: 20px; padding: 10px;" v-if="showingDiv1">
+        <h2 style="padding-left:20px ;"><u>CADASTRO</u></h2>
         <form @submit="createCadastro($event)">
-            <label>Nome:</label>
+            <label>Nome:</label> <br>
             <input type="text" v-model="nome"><br><br>
 
-            <label>Email:</label>
+            <label>Email:</label> <br>
             <input type="text" v-model="email"><br><br>
 
-            <label>Celular:</label>
+            <label>Celular:</label> <br>
             <input type="text" v-model="telefone"><br><br>
 
-            <input class="btn" type="submit" value="Enviar">
+            <input class="btn" type="submit" value="Cadastrar">
         </form>
     </div>
     <div v-if="showingDiv2">
         <h2>Editar cadastro</h2>
         <form @submit="editCadastro(cadastroSelecionado)">
-            <label>Nome:</label>
-            <input type="text" v-model="nome"><br><br>
+            <label>Novo Nome</label><br>
+            <input type="text" v-model="nome" placeholder="Para manter, deixe vazio"><br><br>
 
-            <label>Email:</label>
-            <input type="text" v-model="email"><br><br>
+            <label>Novo Email</label><br>
+            <input type="text" v-model="email" placeholder="Para manter, deixe vazio"><br><br>
 
-            <label>Celular:</label>
-            <input type="text" v-model="telefone"><br><br>
+            <label>Novo Celular</label><br>
+            <input type="text" v-model="telefone" placeholder="Para manter, deixe vazio"><br><br>
 
             <input class="btn" type="submit" value="Editar">
             <button class="btn" @click="showDiv1" v-if="!showingDiv1">Voltar</button>
         </form>
         
     </div>
+  </div>
     <hr>
         <div>
         <div id="cadastro-table-heading">
@@ -97,7 +99,7 @@
             }
 
             const dataJson = JSON.stringify(data);
-            const req = await fetch('http://localhost:5021/api/Cadastro/Teste', {
+            const req = await fetch('http://localhost:3000/cadastros', {
                 method: 'POST',
                 headers: {"Content-Type" : "application/json" },
                 body: dataJson
@@ -109,32 +111,9 @@
             this.getCadastros();
             
         },
-/*
-        async createCadastro(e){
-            e.preventDefault(); 
 
-            const data = {
-                nome : this.nome,
-                email : this.email,
-                telefone : this.telefone
-            }
-
-            const dataJson = JSON.stringify(data);
-            const req = await fetch('http://localhost:5021/api/Cadastro', {
-                method: 'POST',
-                headers: {"Content-Type" : "application/json" },
-                body: dataJson
-            });
-
-            const res = await req.json();
-            console.log(res);
-            
-            this.getCadastros();
-            
-        },
-*/
         async getCadastros() {
-        const req = await fetch('http://localhost:5021/api/Cadastro');
+        const req = await fetch('http://localhost:3000/cadastros');
        
         const data = await req.json();     
         this.cadastros = data;
@@ -143,14 +122,14 @@
         
         },
         async getCadastro(id) {
-        const req = await fetch(`http://localhost:5021/api/Cadastro/${id}`);
+        const req = await fetch(`http://localhost:3000/cadastros/${id}`);
        
         const data = await req.json();     
         this.cadastroSelecionado = data; 
 
         },
         async deleteCadastro(id) {
-            const req = await fetch(`http://localhost:5021/api/Cadastro/${id}`, {
+            const req = await fetch(`http://localhost:3000/cadastros/${id}`, {
             method: 'DELETE'
             });
 
@@ -164,7 +143,7 @@
             }
 
             const dataJson = JSON.stringify(data);
-            const req = await fetch(`http://localhost:5021/api/Cadastro/${id}`, {
+            const req = await fetch(`http://localhost:3000/cadastros/${id}`, {
                 method: 'PATCH',
                 headers: {"Content-Type" : "application/json" },
                 body: dataJson
@@ -215,8 +194,8 @@
     margin-right: 12px;
   }
   .btn {
-    background-color: #222;
-    color:#fcba03;
+    background-color: #031B4E;
+    color:#fff;
     font-weight: bold;
     padding: 10px;
     font-size: 16px;
@@ -224,7 +203,7 @@
     cursor: pointer;
     transition: .5s;
     margin-right: 10px;
-    
+    border-radius: 15px;
   }
   
   .btn:hover {
